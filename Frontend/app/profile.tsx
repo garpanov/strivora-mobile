@@ -18,7 +18,7 @@ import AuthStatusCard from '@/components/menu/authStatusCard';
 import InfoCards from '@/components/menu/infoTechUser';
 
 
-export default function TaskScreen() {
+export default function ProfileScreen() {
 
     return (
       <View style={styles.screen}>
