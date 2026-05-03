@@ -12,6 +12,7 @@ import {
 import { colors, spacing } from '@/components/main/design-tokens';
 import Return from '@/components/menu/return';
 import FAQHeader from '@/components/menu/faq/headerFAQ';
+import VoiceInputCard from '@/components/menu/faq/voiceFAQ';
 
 
 export default function FAQScreen() {
@@ -28,6 +29,7 @@ export default function FAQScreen() {
           
         >
           <FAQHeader></FAQHeader>
+          <VoiceInputCard />
         </ScrollView>
       </View>
     );
