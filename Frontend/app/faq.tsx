@@ -16,6 +16,7 @@ import VoiceInputCard from '@/components/menu/faq/voiceFAQ';
 import FinanceCard from '@/components/menu/faq/financeFAQ';
 import StatisticsCard from '@/components/menu/faq/statisticsFAQ';
 import PrivacyCard from '@/components/menu/faq/privacyFAQ';
+import SupportCard from '@/components/menu/faq/helpQuestinsFAQ';
 
 
 export default function FAQScreen() {
@@ -36,6 +37,8 @@ export default function FAQScreen() {
           <FinanceCard />
           <StatisticsCard />
           <PrivacyCard />
+
+          <SupportCard />
         </ScrollView>
       </View>
     );
@@ -53,7 +56,7 @@ const styles = StyleSheet.create({
   content: {
     paddingHorizontal: spacing.lg,
     paddingTop: spacing.xl,
-    gap: 20,
+    gap: 10,
   },
   voiceWrap: {
     position: 'absolute',
