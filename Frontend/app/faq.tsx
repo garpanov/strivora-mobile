@@ -15,6 +15,7 @@ import FAQHeader from '@/components/menu/faq/headerFAQ';
 import VoiceInputCard from '@/components/menu/faq/voiceFAQ';
 import FinanceCard from '@/components/menu/faq/financeFAQ';
 import StatisticsCard from '@/components/menu/faq/statisticsFAQ';
+import PrivacyCard from '@/components/menu/faq/privacyFAQ';
 
 
 export default function FAQScreen() {
@@ -34,6 +35,7 @@ export default function FAQScreen() {
           <VoiceInputCard />
           <FinanceCard />
           <StatisticsCard />
+          <PrivacyCard />
         </ScrollView>
       </View>
     );
