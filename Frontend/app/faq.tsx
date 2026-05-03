@@ -13,6 +13,7 @@ import { colors, spacing } from '@/components/main/design-tokens';
 import Return from '@/components/menu/return';
 import FAQHeader from '@/components/menu/faq/headerFAQ';
 import VoiceInputCard from '@/components/menu/faq/voiceFAQ';
+import FinanceCard from '@/components/menu/faq/financeFAQ';
 
 
 export default function FAQScreen() {
@@ -30,6 +31,7 @@ export default function FAQScreen() {
         >
           <FAQHeader></FAQHeader>
           <VoiceInputCard />
+          <FinanceCard />
         </ScrollView>
       </View>
     );
