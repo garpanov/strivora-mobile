@@ -18,7 +18,7 @@ import SystemSettings from '@/components/menu/settings/systemSettings';
 import ObstacleScreen from '@/components/menu/settings/textBottomSettings';
 
 
-export default function ProfileScreen() {
+export default function SettingsScreen() {
 
     return (
       <View style={styles.screen}>
