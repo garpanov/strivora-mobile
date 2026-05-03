@@ -27,7 +27,7 @@ export default function ProfileScreen() {
    
         <ScrollView
           style={styles.scroll}
-          contentContainerStyle={{ ...styles.content, paddingBottom: 120 }}
+          contentContainerStyle={{ ...styles.content, paddingBottom: 50 }}
           showsVerticalScrollIndicator={false}
           
         >
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   content: {
     paddingHorizontal: spacing.lg,
     paddingTop: spacing.xl,
-    gap: spacing.md,
+    gap: 20,
   },
   voiceWrap: {
     position: 'absolute',

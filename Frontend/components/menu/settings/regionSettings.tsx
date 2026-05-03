@@ -77,7 +77,7 @@ function DropdownPicker({
 
       <TouchableOpacity style={styles.selector} onPress={() => setVisible(true)} activeOpacity={0.7}>
         <Text style={styles.selectorText}>{selectedLabel}</Text>
-        <Ionicons name={rightIcon} size={20} color="#7EECEA" />
+        <Ionicons name={rightIcon} size={20} color="#BDC9C6" />
       </TouchableOpacity>
 
       <Modal visible={visible} transparent animationType="fade">
@@ -152,7 +152,7 @@ export default function RegionalSettings({
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Ionicons name="earth" size={24} color="#7EECEA" />
+        <Ionicons name="earth" size={24} color="#8BF1E6" />
         <Text style={styles.title}>РЕГІОНАЛЬНІ{'\n'}НАЛАШТУВАННЯ</Text>
       </View>
 
@@ -184,11 +184,13 @@ export default function RegionalSettings({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#2A2A2E',
+    backgroundColor: '#1B1B1B',
     borderRadius: 16,
-    padding: 24,
+    paddingHorizontal: 24,
+    paddingVertical: 28,
     gap: 20,
-    marginVertical: 10
+    borderColor: "rgba(255, 255, 255, 0.05)",
+    borderWidth: 1,
   },
   header: {
     flexDirection: 'row',
@@ -198,7 +200,7 @@ const styles = StyleSheet.create({
     marginLeft: 4,
   },
   title: {
-    color: '#FFFFFF',
+    color: '#BDC9C6',
     fontSize: 15,
     fontWeight: '700',
     letterSpacing: 1.5,
@@ -206,9 +208,10 @@ const styles = StyleSheet.create({
   },
   fieldWrapper: {
     gap: 8,
+    paddingHorizontal: 7,
   },
   fieldLabel: {
-    color: '#888899',
+    color: '#BDC9C6',
     fontSize: 11,
     fontWeight: '600',
     letterSpacing: 1.2,
@@ -217,10 +220,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#3A3A40',
+    backgroundColor: '#353535',
     borderRadius: 10,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
+    paddingHorizontal: 17,
+    paddingVertical: 18,
+    marginTop: 3
   },
   selectorText: {
     color: '#FFFFFF',
@@ -233,11 +237,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   dropdown: {
-    backgroundColor: '#2A2A2E',
+    backgroundColor: '#2e2e2eff',
     borderRadius: 12,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: '#3A3A40',
+    borderColor: '#363636ff',
     maxHeight: 380,
   },
   searchRow: {
@@ -247,8 +251,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#3A3A40',
-    backgroundColor: '#222228',
+    borderBottomColor: '#3c3c3cff',
+    backgroundColor: '#252525ff',
   },
   searchInput: {
     flex: 1,
@@ -262,13 +266,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingVertical: 13,
     borderBottomWidth: 1,
-    borderBottomColor: '#3A3A40',
+    borderBottomColor: '#3e3e3eff',
   },
   dropdownItemActive: {
-    backgroundColor: '#35353C',
+    backgroundColor: '#3b3b3bff',
   },
   dropdownItemText: {
-    color: '#CCCCDD',
+    color: '#dededeff',
     fontSize: 15,
   },
   dropdownItemTextActive: {
