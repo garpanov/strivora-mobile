@@ -15,6 +15,7 @@ import HeaderSettings from '@/components/menu/settings/headerSettings';
 import RegionalSettings from '@/components/menu/settings/regionSettings';
 import NotificationsCard from '@/components/menu/settings/notificationSettings';
 import SystemSettings from '@/components/menu/settings/systemSettings';
+import ObstacleScreen from '@/components/menu/settings/textBottomSettings';
 
 
 export default function ProfileScreen() {
@@ -42,6 +43,7 @@ export default function ProfileScreen() {
             <NotificationsCard />
 
             <SystemSettings />
+            <ObstacleScreen />
         </ScrollView>
       </View>
     );
