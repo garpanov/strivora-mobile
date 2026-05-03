@@ -1,0 +1,93 @@
+{
+    "main.hero.title.one": "День фокусу",
+    "main.hero.title.more": "Дні фокусу",
+    "main.ai.analysis.label": "AI Аналіз: Вчора",
+
+    "main.tasks.title": "Активні завдання",
+    "main.tasks.day": "Сьогодні,",
+    "main.tasks.add": "Додати завдання",
+
+    "main.mind.balance.label": "Баланс розуму",
+    "main.mind.balance.period": "Цього тижня",
+
+    "main.stats.focus.label": "Середній фокус",
+    "main.stats.energy.label": "Щоденна енергія",
+
+    "main.stoicism.title": "Твій цифровий стоїцизм",
+
+    "main.voice.assistant": "Проаналізуй мій вчорашній день...",
+
+    "tasks.title": "Завдання",
+    "tasks.subtitle": "Зосередься на важливому. Strivora допомагає організувати твій день.",
+
+    "tasks.filter.today": "Сьогодні",
+    "tasks.filter.tomorrow": "Завтра",
+    "tasks.filter.week": "Тиждень",
+    "tasks.filter.month": "Місяць",
+    "tasks.filter.year": "Рік",
+    "tasks.filter.other": "Інше",
+    "tasks.filter.ai": "Розумний AI",
+
+    "tasks.voice.input.label": "ГОЛОСОВИЙ ВВІД",
+    "tasks.voice.input.add": "Додати",
+
+    "tasks.task.priority": "Пріоритет",
+    "tasks.task.priority.high": "ВИСОКИЙ",
+    "tasks.task.priority.medium": "СРЕДНІЙ",
+    "tasks.task.priority.low": "НИЗЬКИЙ",
+    "tasks.task.done": "Виконано",
+    "tasks.task.remaining": "Залишилось",
+    "tasks.task.hours": "годин",
+
+    "tasks.summary.title": "Підсумок дня",
+    "tasks.summary.quote": "\"Найкраща помста — не бути схожим на свого ворога.\" — Марк Аврелій",
+
+    "finance_section_label": "Фінансовий огляд",
+    "finance_main_heading": "Контроль над \nКапіталом",
+
+    "finance_daily_expenses_label": "Витрати за сьогодні",
+
+    "finance_expense_eat": "Їжа",
+    "finance_expense_play": "Розваги",
+    "finance_expense_empty": "Тут два варіанта, або ви ще не витрачали гроші, \nабо ви щось скриваєте від нас",
+
+    "finance_monthly_income_label": "Місячний дохід",
+
+    "finance_monthly_analysis_title": "Аналіз витрат за місяць",
+    "finance_category_housing": "Житло",
+    "finance_category_housing_percent": "від бюджету",
+    "finance_category_groceries": "Продукти",
+    "finance_category_entertainment": "Розваги",
+
+    "finance_automation_title": "Автоматизуйте облік",
+    "finance_automation_description": "Підключіть банк або просто сфотографуйте чек. Наш AI розпізнає категорію та миттєво додасть витрату.",
+    "finance_button_scan_receipt": "Сканувати чек",
+    "finance_button_connect_bank": "Підключити банк",
+
+    "finance_insight_message": "Ви витратили",
+    "finance_insight_message_2": "менше на каву цього місяця.",
+    "finance_insight_highlight": "Відмінний самоконтроль!",
+
+    "finance_visual_heading": "Ваш фінансовий спокій",
+    "finance_visual_description": "Усвідомленість у витратах — перший крок до справжньої свободи.",
+
+    "finance_hero_label": "Аналізуй своє життя",
+    "analysis_hero_title": "Аналіз\nОсобистості",
+    "analysis_filter_week": "Тиждень",
+    "analysis_filter_month": "Місяць",
+    "analysis_filter_year": "Рік",
+
+    "analysis_finance_title": "Фінанси",
+    "analysis_finance_subtitle": "Всі ваші витрати",
+    "analysis_finance_status": "Ви в межах бюджету",
+    "analysis_finance_savings": "Зекономлено на {{count}}& більше, ніж у січні",
+
+    "analysis_ai_title": "AI поради",
+    "analysis_ai_button": "Оптимізувати розклад",
+
+    "analysis_tasks_title": "Виконання\nзавдань",
+    "analysis_tasks_discipline": "Дисципліна",
+    "analysis_tasks_missed": "Пропущено",
+
+    "analysis_yearly_title": "Річна\nХарактеристика"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "learn",
+  "private": true,
+  "workspaces": {
+    "packages": ["Frontend", "backend", "shared"],
+    "nohoist": [
+      "Frontend/**",
+      "**/expo",
+      "**/expo/**",
+      "**/expo-router",
+      "**/expo-router/**",
+      "**/react-native",
+      "**/react-native/**"
+    ]
+  }
+}

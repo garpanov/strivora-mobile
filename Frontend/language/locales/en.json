@@ -1,0 +1,96 @@
+{
+    "main.hero.title.one": "Day of Focus",
+    "main.hero.title.more": "Days of Focus",
+    "main.ai.analysis.label": "AI Analysis: Yesterday",
+
+    "main.tasks.title": "Active Tasks",
+    "main.tasks.day": "Today,",
+    "main.tasks.add": "Add Task",
+
+    "main.mind.balance.label": "Mind Balance",
+    "main.mind.balance.period": "This Week",
+
+    "main.stats.focus.label": "Average Focus",
+    "main.stats.energy.label": "Daily Energy",
+
+    "main.stoicism.title": "Your Digital Stoicism",
+
+    "main.voice.assistant": "Analyze my yesterday...",
+
+
+    "tasks.title": "Tasks",
+    "tasks.subtitle": "Focus on what matters. Strivora helps organize\nyour day.",
+
+    "tasks.filter.today": "Today",
+    "tasks.filter.tomorrow": "Tomorrow",
+    "tasks.filter.week": "Week",
+    "tasks.filter.month": "Month",
+    "tasks.filter.year": "Year",
+    "tasks.filter.other": "Other",
+    "tasks.filter.ai": "Smart AI",
+
+    "tasks.voice.input.label": "VOICE INPUT",
+    "tasks.voice.input.add": "Add",
+
+    "tasks.task.priority": "Priority",
+    "tasks.task.priority.high": "HIGH",
+    "tasks.task.priority.medium": "MEDIUM",
+    "tasks.task.priority.low": "LOW",
+    "tasks.task.done": "Finish",
+    "tasks.task.remaining": "Remaining",
+    "tasks.task.hours": "hours",
+
+    "tasks.summary.title": "Daily Summary",
+    "tasks.summary.quote": "\"The best revenge is to be unlike your enemy.\" — Marcus Aurelius",
+
+    "finance_section_label": "Financial Overview",
+    "finance_main_heading": "Control over \nCapital",
+    
+    "finance_daily_expenses_label": "Expenses for today",
+
+    "finance_expense_eat": "Eating",
+    "finance_expense_play": "Entertainment",
+    "finance_expense_empty": "There are two options here, either you haven't spent any money yet, \nor you are hiding something from us.",
+
+    "finance_monthly_income_label": "Monthly income",
+
+    "finance_monthly_analysis_title": "Monthly expense analysis",
+    "finance_category_housing": "Housing",
+    "finance_category_housing_percent": "of budget",
+    "finance_category_groceries": "Groceries",
+    "finance_category_entertainment": "Entertainment",
+
+    "finance_automation_title": "Automate your accounting",
+    "finance_automation_description": "Connect your bank or simply take a photo of a receipt. Our AI will recognize the category and add the expense instantly.",
+    "finance_button_scan_receipt": "Scan receipt",
+    "finance_button_connect_bank": "Connect bank",
+
+    "finance_insight_message": "You spent",
+    "finance_insight_message_2": "less on coffee this month.",
+    "finance_insight_highlight": "Excellent self-control!",
+
+    "finance_visual_heading": "Your financial peace",
+    "finance_visual_description": "Mindfulness in spending is the first step to true freedom.",
+    
+
+    "finance_hero_label": "Analyse your life",
+    "analysis_hero_title": "Personality\nAnalysis",
+    "analysis_filter_week": "Week",
+    "analysis_filter_month": "Month",
+    "analysis_filter_year": "Year",
+
+    "analysis_finance_title": "Finance",
+    "analysis_finance_subtitle": "All your expenses",
+    "analysis_finance_status": "You are within budget",
+    "analysis_finance_savings": "Saved {{count}}% more than in January",
+
+    "analysis_ai_title": "AI Tips",
+    "analysis_ai_button": "Optimize schedule",
+
+    "analysis_tasks_title": "Task\ncompletion",
+    "analysis_tasks_discipline": "Discipline",
+    "analysis_tasks_missed": "Missed",
+
+    "analysis_yearly_title": "Annual Report"
+
+}
