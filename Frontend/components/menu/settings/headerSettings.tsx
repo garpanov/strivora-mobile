@@ -17,6 +17,7 @@ export default function HeaderSettings() {
 const styles = StyleSheet.create({
   container: {
     gap: spacing.xs,
+    marginBottom: 30
   },
   display: {
     ...typography.display,

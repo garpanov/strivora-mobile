@@ -152,7 +152,7 @@ export default function RegionalSettings({
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Ionicons name="earth" size={22} color="#7EECEA" />
+        <Ionicons name="earth" size={24} color="#7EECEA" />
         <Text style={styles.title}>РЕГІОНАЛЬНІ{'\n'}НАЛАШТУВАННЯ</Text>
       </View>
 
@@ -188,12 +188,14 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 24,
     gap: 20,
+    marginVertical: 10
   },
   header: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     gap: 12,
     marginBottom: 4,
+    marginLeft: 4,
   },
   title: {
     color: '#FFFFFF',
