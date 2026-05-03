@@ -13,6 +13,7 @@ import { colors, spacing } from '@/components/main/design-tokens';
 import Return from '@/components/menu/return';
 import HeaderSettings from '@/components/menu/settings/headerSettings';
 import RegionalSettings from '@/components/menu/settings/regionSettings';
+import NotificationsCard from '@/components/menu/settings/notificationSettings';
 
 
 export default function ProfileScreen() {
@@ -36,7 +37,8 @@ export default function ProfileScreen() {
               onCountryChange={(code) => console.log('Selected country:', code)}
               onLanguageChange={(lang) => console.log('Selected language:', lang)}
             />
-            
+
+            <NotificationsCard />
         </ScrollView>
       </View>
     );
