@@ -12,6 +12,7 @@ import {
 import { colors, spacing } from '@/components/main/design-tokens';
 import Return from '@/components/menu/return';
 import HeaderSettings from '@/components/menu/settings/headerSettings';
+import RegionalSettings from '@/components/menu/settings/regionSettings';
 
 
 export default function ProfileScreen() {
@@ -28,6 +29,13 @@ export default function ProfileScreen() {
           
         >
             <HeaderSettings />
+
+            <RegionalSettings
+              country="UA"
+              language="uk"
+              onCountryChange={(code) => console.log('Selected country:', code)}
+              onLanguageChange={(lang) => console.log('Selected language:', lang)}
+            />
             
         </ScrollView>
       </View>
