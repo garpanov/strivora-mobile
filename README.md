@@ -175,28 +175,6 @@ npm run start:dev
 
 ---
 
-## 👏 Contributing
-
-### Create a branch
-
-1. `git checkout main` from any folder in your local repository
-1. `git pull origin main` to ensure you have the latest code
-1. `git checkout -b the-name-of-my-branch` to create a branch
-   > replace `the-name-of-my-branch` with a suitable name, such as `feature/voice-input`
-
-### Make your changes
-
-1. Follow the [Getting Started](#-getting-started) instructions
-1. Make your changes and test them on device or simulator
-
-### Push it
-
-1. `git add . && git commit -m "your message"` to stage and commit your changes
-1. `git push origin the-name-of-my-branch`
-1. Open a Pull Request on GitHub and describe your changes
-
----
-
 ## 📄 License
 
 Strivora is [MIT licensed](./LICENSE).
