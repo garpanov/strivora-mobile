@@ -48,7 +48,7 @@ export default function Header({ onBellPress }: Props) {
 
           {/* Right side */}
           <TouchableOpacity
-            onPress={onBellPress}
+            onPress={() => router.push('/notification')}
             style={styles.iconBtn}
             hitSlop={HIT}
           >
