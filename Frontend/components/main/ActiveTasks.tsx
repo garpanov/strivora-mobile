@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { colors, typography, spacing, radius } from './design-tokens';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'expo-router';
 
 export type Task = {
   id: string;
@@ -15,11 +16,11 @@ type Props = {
   tasks: Task[];
   date: string;
   onTaskPress?: (task: Task) => void;
-  onAddPress?: () => void;
 };
 
-export default function ActiveTasksCard({ tasks, date, onTaskPress, onAddPress }: Props) {
+export default function ActiveTasksCard({ tasks, date, onTaskPress }: Props) {
     const { t, i18n } = useTranslation();
+    const router = useRouter();
     return (
         <View style={styles.card}>
         {/* Header */}
@@ -52,7 +53,7 @@ export default function ActiveTasksCard({ tasks, date, onTaskPress, onAddPress }
         </View>
 
         {/* Primary CTA — gradient-style button */}
-        <TouchableOpacity style={styles.addButton} onPress={onAddPress} activeOpacity={0.85}>
+        <TouchableOpacity style={styles.addButton} onPress={() => router.push("/create_task")} activeOpacity={0.85}>
             <Text style={styles.addButtonText}>Додати завдання  +</Text>
         </TouchableOpacity>
         </View>

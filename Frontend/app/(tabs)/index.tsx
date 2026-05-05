@@ -39,7 +39,6 @@ export default function HomeScreen({ navigation }: any) {
   return (
     <View style={styles.screen}>
       <Header
-        onMenuPress={() => navigation?.openDrawer?.()}
         onBellPress={() => navigation?.navigate?.('Notifications')}
         hasNotification
       />
@@ -59,7 +58,6 @@ export default function HomeScreen({ navigation }: any) {
           tasks={TASKS}
           date="24 Жовт"
           onTaskPress={(task) => navigation?.navigate?.('TaskDetail', { taskId: task.id })}
-          onAddPress={() => navigation?.navigate?.('AddTask')}
         />
 
         <FinanceCard
