@@ -13,6 +13,7 @@ import { colors, spacing } from '@/components/main/design-tokens';
 import Return from '@/components/menu/return';
 import HeaderCreateTask from '@/components/create_tasks/header';
 import TaskDescriptionInput from '@/components/create_tasks/inputField';
+import WhenPicker from '@/components/create_tasks/dateField';
 
 
 
@@ -31,6 +32,9 @@ export default function CreateTaskScreen() {
         >
             <HeaderCreateTask />
             <TaskDescriptionInput />
+            <WhenPicker onSelect={({ type, date }) => {
+                console.log(type, date);
+                }} />
         </ScrollView>
       </View>
     );
