@@ -1,4 +1,4 @@
-# Strivora &middot; ![Status](https://img.shields.io/badge/status-in%20development-orange) ![License](https://img.shields.io/badge/license-MIT-blue) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) ![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20Android-lightgrey)
+# Strivora &middot; ![Status](https://img.shields.io/badge/status-in%20development-orange) ![License](https://img.shields.io/badge/license-MIT-blue) ![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20Android-lightgrey)
 
 > A mobile app that helps you take control of your life — tasks, finances, personal statistics, and AI-powered advice in one place.
 
