@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { router } from 'expo-router';
-import { AlertType, Notification } from '../../app/notification/typeNotification';
+import { AlertType, Notification } from './typeNotification';
 
 const DOT_COLOR: Record<AlertType, string> = {
   [AlertType.Tips]:     '#EF9F27',

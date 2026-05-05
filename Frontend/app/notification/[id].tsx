@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { AlertType, Notification } from './typeNotification';
+import { AlertType, Notification } from '../../components/notifications/typeNotification';
 export const NOTIFICATIONS: Notification[] = [
   {
     id: '1',

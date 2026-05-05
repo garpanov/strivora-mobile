@@ -1,4 +1,4 @@
-// types/notification.ts
+
 export enum AlertType {
   Tips = 'Tips',
   Progress = 'Progress',

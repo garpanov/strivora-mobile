@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
-import { AlertType, Notification } from './typeNotification';
+import { AlertType, Notification } from '../../components/notifications/typeNotification';
 import { NotificationItem } from '../../components/notifications/notificationItem';
 
 export const NOTIFICATIONS: Notification[] = [
