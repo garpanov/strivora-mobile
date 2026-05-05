@@ -14,6 +14,7 @@ import Return from '@/components/menu/return';
 import HeaderCreateTask from '@/components/create_tasks/header';
 import TaskDescriptionInput from '@/components/create_tasks/inputField';
 import WhenPicker from '@/components/create_tasks/dateField';
+import AITimePicker from '@/components/create_tasks/acceptAI';
 
 
 
@@ -35,6 +36,7 @@ export default function CreateTaskScreen() {
             <WhenPicker onSelect={({ type, date }) => {
                 console.log(type, date);
                 }} />
+            <AITimePicker />
         </ScrollView>
       </View>
     );

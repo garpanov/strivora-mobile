@@ -235,6 +235,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
     paddingTop: 12,
+
   },
   title: {
     color: '#aaa',
