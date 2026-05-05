@@ -27,7 +27,7 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
 };
 
 config.resolver.extraNodeModules = {
-  "@shared/types": path.resolve(projectRoot, "../shared"),
+  "@shared/types": path.resolve(projectRoot, "../shared/types"),
 };
 
 module.exports = config;
