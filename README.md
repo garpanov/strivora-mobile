@@ -3,7 +3,7 @@
 > A mobile app that helps you take control of your life — tasks, finances, personal statistics, and AI-powered advice in one place.
 
 > [!WARNING]
-> 🚧 This project is currently **under active development**. Features may be incomplete or subject to change. Contributions and feedback are welcome!
+> 🚧 This project is currently **under active development**. Features may be incomplete or subject to change.
 
 ---
 
