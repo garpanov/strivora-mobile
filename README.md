@@ -176,5 +176,4 @@ npm run start:dev
 ---
 
 ## 📄 License
-
 Strivora is [MIT licensed](./LICENSE).
