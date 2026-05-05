@@ -15,6 +15,7 @@ import HeaderCreateTask from '@/components/create_tasks/header';
 import TaskDescriptionInput from '@/components/create_tasks/inputField';
 import WhenPicker from '@/components/create_tasks/dateField';
 import AITimePicker from '@/components/create_tasks/acceptAI';
+import SaveButton from '@/components/create_tasks/buttonCreate';
 
 
 
@@ -27,7 +28,7 @@ export default function CreateTaskScreen() {
    
         <ScrollView
           style={styles.scroll}
-          contentContainerStyle={{ ...styles.content, paddingBottom: 120 }}
+          contentContainerStyle={{ ...styles.content, paddingBottom: 40 }}
           showsVerticalScrollIndicator={false}
           
         >
@@ -37,6 +38,8 @@ export default function CreateTaskScreen() {
                 console.log(type, date);
                 }} />
             <AITimePicker />
+
+            <SaveButton onPress={() => console.log('Збережено!')} />
         </ScrollView>
       </View>
     );
