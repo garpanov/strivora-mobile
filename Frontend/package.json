@@ -11,8 +11,8 @@
     "lint": "expo lint"
   },
   "dependencies": {
-    "@myapp/shared": "file:../shared",
     "@expo/vector-icons": "^15.0.3",
+    "@myapp/shared": "file:../shared",
     "@react-native-async-storage/async-storage": "2.2.0",
     "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.6.3",
@@ -47,7 +47,7 @@
     "react-native-worklets": "0.5.1",
     "react-native-worklets-core": "^1.6.3",
     "semver": "^7.7.4",
-    "zustand": "^5.0.12"
+    "zustand": "^5.0.13"
   },
   "devDependencies": {
     "@expo/metro-config": "^54.0.14",

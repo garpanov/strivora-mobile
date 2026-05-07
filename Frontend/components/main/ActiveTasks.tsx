@@ -3,13 +3,50 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { colors, typography, spacing, radius } from './design-tokens';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'expo-router';
+import { TaskPriority } from '@shared/types';
 
 export type Task = {
   id: string;
-  icon: string;
-  title: string;
-  duration: string;
-  priority: 'Високий' | 'Середній' | 'Низький';
+  name: string;
+  priority: TaskPriority;
+};
+
+export const taskIcons = [
+  "📌",
+  "✅",
+  "📝",
+  "📚",
+  "💻",
+  "🛠️",
+  "🎯",
+  "🚀",
+  "⚡",
+  "🔥",
+  "📅",
+  "📈",
+  "📊",
+  "🧠",
+  "🗂️",
+  "📦",
+  "🔍",
+  "🧪",
+  "💡",
+  "🖥️",
+  "⌛",
+  "📍",
+  "🏆",
+  "🪄",
+  "🕒",
+  "📱",
+  "🌟",
+  "✏️",
+  "☁️",
+  "📂",
+  "🤝",
+];
+
+const getRandomTaskIcon = (): string => {
+  return taskIcons[Math.floor(Math.random() * taskIcons.length)];
 };
 
 type Props = {
@@ -31,7 +68,7 @@ export default function ActiveTasksCard({ tasks, date, onTaskPress }: Props) {
 
         {/* Task list — spacing instead of dividers */}
         <View style={styles.list}>
-            {tasks.map((task) => (
+            {tasks.length > 0 ? tasks.map((task) => (
             <TouchableOpacity
                 key={task.id}
                 style={styles.taskRow}
@@ -39,17 +76,17 @@ export default function ActiveTasksCard({ tasks, date, onTaskPress }: Props) {
                 activeOpacity={0.7}
             >
                 <View style={styles.iconBox}>
-                <Text style={styles.taskIcon}>{task.icon}</Text>
+                <Text style={styles.taskIcon}>{getRandomTaskIcon()}</Text>
                 </View>
 
                 <View style={styles.taskInfo}>
-                <Text style={styles.taskTitle}>{task.title}</Text>
-                <Text style={styles.taskMeta}>{task.duration} · Пріоритет: {task.priority}</Text>
+                <Text style={styles.taskTitle}>{task.name}</Text>
+                <Text style={styles.taskMeta}>Пріоритет: {task.priority}</Text>
                 </View>
 
                 <Text style={styles.chevron}>›</Text>
             </TouchableOpacity>
-            ))}
+            )) : <Text style={[styles.taskMeta, { textAlign: 'center' }]}>Немає активних завдань</Text>}
         </View>
 
         {/* Primary CTA — gradient-style button */}

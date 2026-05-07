@@ -4,37 +4,25 @@ import { ScrollView, View, StyleSheet } from 'react-native';
 import { colors, spacing } from '@/components/main/design-tokens';
 import Header from '@/components/header';
 import HeroSection from '@/components/main/herosection';
-import ActiveTasksCard, { Task } from '@/components/main/ActiveTasks';
+import ActiveTasksCard from '@/components/main/ActiveTasks';
 import FinanceCard from '@/components/main/FinanceCard';
 import StatsRow from '@/components/main/stats';
 import DigitalStoicismCard from '@/components/main/digitalstoick';
-
-// ─────────────────────────────────────────────────────────────────────────────
-
-const TASKS: Task[] = [
-  {
-    id: '1',
-    icon: '📖',
-    title: 'Читання "Роздумів" Марка Аврелія',
-    duration: '45 хвилин',
-    priority: 'Високий',
-  },
-  {
-    id: '2',
-    icon: '🏋️',
-    title: 'Глибоке тренування (HIIT)',
-    duration: '20 хвилин',
-    priority: 'Середній',
-  },
-];
-
-const STATS =
-  { time_value: '1г 24х', energy_value: '84%' }
-;
+import { useTasksStore, Task } from '@/store/useTasksStore';
+import { TaskPriority, TaskStatus } from '@shared/types';
+import { getTasksEndingToday } from '@/utils/task.utils';
  
 // ─────────────────────────────────────────────────────────────────────────────
  
 export default function HomeScreen({ navigation }: any) {
+
+  const tasks_start = useTasksStore((state) => state.tasks)
+
+  const tasks = getTasksEndingToday(tasks_start);
+
+  const STATS =
+    { time_value: '1г 24х', energy_value: '84%' }
+  ;
 
   return (
     <View style={styles.screen}>
@@ -55,7 +43,7 @@ export default function HomeScreen({ navigation }: any) {
         />
  
         <ActiveTasksCard
-          tasks={TASKS}
+          tasks={tasks}
           date="24 Жовт"
           onTaskPress={(task) => navigation?.navigate?.('TaskDetail', { taskId: task.id })}
         />

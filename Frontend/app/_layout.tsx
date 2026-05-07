@@ -5,6 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { View } from 'react-native';
+import { useTasksStore } from '@/store/useTasksStore';
 import 'react-native-reanimated';
 
 import "../language/i18n"
@@ -34,11 +35,19 @@ export default function RootLayout() {
       'Inter-Medium':   require('../assets/fonts/Inter-Medium.ttf'),
     });
 
+  const initTask = useTasksStore((state) => state.initTask);
+  
+
   useEffect(() => {
     if (loaded) SplashScreen.hideAsync();
   }, [loaded]);
+  useEffect(() => {
+    initTask();
+  }, []);
 
   if (!loaded) return null;
+
+
 
   return (
   <View style={{ flex: 1, backgroundColor: '#0d0d0d' }}>
