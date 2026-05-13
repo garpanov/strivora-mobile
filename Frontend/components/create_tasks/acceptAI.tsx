@@ -2,8 +2,12 @@ import { View, Text, Switch, StyleSheet } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from 'react';
 
-export default function AITimePicker() {
-  const [enabled, setEnabled] = useState(false);
+
+type Props = {
+  enabled: boolean;
+  onChange: (enabled: boolean) => void;
+}
+export default function AITimePicker({ enabled, onChange }: Props) {
 
   return (
     <View style={styles.container}>
@@ -18,7 +22,7 @@ export default function AITimePicker() {
 
       <Switch
         value={enabled}
-        onValueChange={setEnabled}
+        onValueChange={onChange}
         style={{ alignSelf: 'center' }}
         trackColor={{ false: '#3A3A3A', true: '#4DD9C0' }}
         thumbColor="#fff"

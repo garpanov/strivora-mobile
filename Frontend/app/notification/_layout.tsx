@@ -13,19 +13,19 @@ export default function NotificationsLayout() {
       }}
     >
       <Stack.Screen 
-  name="index" 
-  options={{ 
-    title: 'Сповіщення',
-    headerLeft: () => (
-      <TouchableOpacity 
-        onPress={() => router.dismiss()}
-        style={{ paddingHorizontal: 5 }}
-      >
-        <Ionicons name="close" size={24} color="#ffffff" />
-      </TouchableOpacity>
-    ),
-  }} 
-/>
+        name="index" 
+        options={{ 
+          title: 'Сповіщення',
+          headerLeft: () => (
+            <TouchableOpacity 
+              onPress={() => router.dismiss()}
+              style={{ paddingHorizontal: 5 }}
+            >
+              <Ionicons name="close" size={24} color="#ffffff" />
+            </TouchableOpacity>
+          ),
+        }} 
+      />
       <Stack.Screen 
         name="[id]" 
         options={{ title: 'Деталі' }} 

@@ -7,7 +7,7 @@ export default function Return() {
   const router = useRouter();
 
   return (
-    <View style={{ backgroundColor: '#0d0d0d', paddingTop: 60, paddingBottom: 10, paddingHorizontal: 20 }}>
+    <View style={{ backgroundColor: '#0d0d0d', paddingTop: 70, paddingBottom: 10, paddingHorizontal: 20 }}>
       <TouchableOpacity 
         onPress={() => router.back()}
         style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}

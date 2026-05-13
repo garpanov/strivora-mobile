@@ -10,15 +10,37 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';    
 
-import { colors, spacing } from '@/components/main/design-tokens';
+import { colors, spacing, typography } from '@/components/main/design-tokens';
 import Header from '@/components/header';
 import HeaderTask from '@/components/tasks/headersTask';
 import TaskFilterBar from '@/components/tasks/filter';
-import VoiceInputCard from '@/components/tasks/createVoice';
 import TaskCard from '@/components/tasks/task';
-import { TaskPriority } from '@shared/types';
+import { TaskPriority, TaskStatus } from '@shared/types';
+import { useTasksStore } from '@/store/useTasksStore';
+import { useChangeStatusTask } from '@/hooks/tasks/createTask';
+import { filterTasksByDate } from '@/utils/task.utils';
+
+import ButtonCreate from '@/components/tasks/buttonCreate';
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('uk-UA', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
 
 export default function TaskScreen() {
+    const tasks = useTasksStore((state) => state.tasks);
+    const [activeFilter, setActiveFilter] = useState('today');
+
+    const tasks_expired = tasks.filter((task) => task.status === TaskStatus.Expired);
+    const task_done_inprogress = tasks.filter((task) => task.status === TaskStatus.Done || task.status === TaskStatus.InProgress);
+    
+    const filteredTasks = filterTasksByDate(task_done_inprogress, activeFilter);
+
+    const { changeStatus } = useChangeStatusTask();
+
+    const handleStatusChange = (taskId: string, status: TaskStatus) => {
+      const newStatus = status === TaskStatus.Done ? TaskStatus.InProgress : TaskStatus.Done;
+      changeStatus(taskId, newStatus);
+    };
 
     return (
       <View style={styles.screen}>
@@ -34,49 +56,47 @@ export default function TaskScreen() {
           />
 
           <TaskFilterBar
-            onFilterChange={(filter) => console.log('Selected filter:', filter)}
+            activeFilter={activeFilter} 
+            onFilterChange={setActiveFilter}    
           />
 
-          <VoiceInputCard
-            text="Запланувати аналіз особистої ефективності на завтра о 10 ранку та підготувати звіт для Stoic Lens"
-            date="ЗАВТРА"
-            time="10:00"
-            onAdd={() => console.log('Task added')}
-            onClose={() => console.log('Card closed')}
-          />
+          <ButtonCreate/>
+
+          <View>
+            <Text>Список завдань:</Text>
+            {filteredTasks.map((task) => (
+              <TaskCard
+                key={task.id}
+                id={task.id}
+                priority={task.priority}
+                title={task.name}
+                status={task.status}
+                description={task.description}
+                onDone={() => handleStatusChange(task.id, task.status)}
+                timeLeft={formatDate(task.dateEnd)}
+              />
+            ))}
+          </View>
 
 
-          <TaskCard
-            priority={TaskPriority.Low}
-            title="Медитація та рефлексія"
-            description="Основна практика самоконтролю на сьогодні. Необхідно 20 хвилин глибокого зосередження."
-            timeLeft="2 години"
-            onDone={() => console.log('done')}
-          />
-
-          <TaskCard
-            priority={TaskPriority.High}
-            title="Медитація та рефлексія"
-            description="Основна практика самоконтролю на сьогодні. Необхідно 20 хвилин глибокого зосередження."
-            timeLeft="2 години"
-            onDone={() => console.log('done')}
-          />
-
-          <TaskCard
-            priority={TaskPriority.Medium}
-            title="Медитація та рефлексія"
-            description="Основна практика самоконтролю на сьогодні. Необхідно 20 хвилин глибокого зосередження."
-            timeLeft="2 години"
-            onDone={() => console.log('done')}
-          />
-
-          <TaskCard
-            title="Перегляд логів"
-            description="Проаналізувати записи за минулий тиждень для виявлення патернів."
-            scheduledTime="14:00"
-            completed
-          />
-
+          <View>
+            {tasks_expired.length > 0 && (
+              <>
+                <Text style={styles.display}>Пропущені:</Text>
+                {tasks_expired.map((task) => (
+                  <TaskCard
+                    key={task.id}
+                    id={task.id}
+                    priority={task.priority}
+                    title={task.name}
+                    status={task.status}
+                    description={task.description}
+                    timeLeft={formatDate(task.dateEnd)}
+                  />
+                ))}
+              </>
+            )}
+          </View>
         </ScrollView>
       </View>
     );
@@ -104,5 +124,11 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     alignItems: 'center',
+  },
+
+  display: {
+    ...typography.display,
+    fontSize: 18,
+    color: '#6f6f6fff'
   },
 });

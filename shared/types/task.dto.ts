@@ -10,3 +10,13 @@ export enum TaskStatus {
   Expired = "Expired"
 }
 
+export type Task = {
+    id: string,
+    name: string,
+    description: string,
+    priority: TaskPriority,
+    status: TaskStatus,
+
+    dateStarted: Date,
+    dateEnd: Date
+}

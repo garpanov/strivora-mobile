@@ -26,7 +26,7 @@
     "tasks.filter.week": "Week",
     "tasks.filter.month": "Month",
     "tasks.filter.year": "Year",
-    "tasks.filter.other": "Other",
+    "tasks.filter.all": "All",
     "tasks.filter.ai": "Smart AI",
 
     "tasks.voice.input.label": "VOICE INPUT",

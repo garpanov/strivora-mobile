@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { AlertType, Notification } from '../../components/notifications/typeNotification';
+import { AlertType, Notification } from '@/components/notifications/typeNotification';
 export const NOTIFICATIONS: Notification[] = [
   {
     id: '1',
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   divider: {
     height: 0.5,
     backgroundColor: '#1F1F1F',
-    marginVertical: 14,
+    marginVertical: 4,
   },
 
   // Body

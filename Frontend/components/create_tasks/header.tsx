@@ -3,14 +3,19 @@ import { View, Text, StyleSheet } from 'react-native';
 import { colors, typography, spacing, radius } from '../main/design-tokens';
 import { useTranslation } from 'react-i18next';
 
-export default function HeaderCreateTask() {
+
+type HeaderCreateTaskProps = {
+  edition?: boolean;
+};
+
+export default function HeaderCreateTask({ edition = false }: HeaderCreateTaskProps) {
   const { t, i18n } = useTranslation();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.display}>Додати{"\n"}завдання</Text>
+      <Text style={styles.display}>{edition ? "Редагувати" : "Додати"}{"\n"}завдання</Text>
 
-      <Text style={styles.subtitle}>НОВИЙ ЗАПИС У СИСТЕМІ</Text>
+      <Text style={styles.subtitle}>{edition ? "РЕДАГУВАННЯ ЗАПИСУ" : "НОВИЙ ЗАПИС У СИСТЕМІ"}</Text>
     </View>
   );
 }

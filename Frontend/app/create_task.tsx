@@ -1,55 +1,88 @@
-import React, { useEffect, useState } from 'react';
+// CreateTaskScreen.tsx
+import React, { useState } from 'react';
 import {
   View,
-  Text,
   ScrollView,
   StyleSheet,
-  StatusBar,
-  TouchableOpacity,
-  ActivityIndicator,
 } from 'react-native';
-
-import { colors, spacing } from '@/components/main/design-tokens';
+import { spacing } from '@/components/main/design-tokens';
 import Return from '@/components/menu/return';
 import HeaderCreateTask from '@/components/create_tasks/header';
 import TaskDescriptionInput from '@/components/create_tasks/inputField';
 import WhenPicker from '@/components/create_tasks/dateField';
-import AITimePicker from '@/components/create_tasks/acceptAI';
 import SaveButton from '@/components/create_tasks/buttonCreate';
+import PriorityPicker from '@/components/create_tasks/priority_change';
+import TaskNameInput from '@/components/create_tasks/inputName';
+import { TaskPriority, TaskStatus, Task } from '@shared/types';
+import { useCreateTask } from '@/hooks/tasks/createTask';
 
-
+const defaultTask: Task = {
+  id: '',
+  name: '',
+  description: '',
+  priority: TaskPriority.Low,
+  dateEnd: new Date(),
+  dateStarted: new Date(),
+  status: TaskStatus.InProgress,
+};
 
 export default function CreateTaskScreen() {
+  const {
+    name, setName,
+    description, setDescription,
+    priority, setPriority,
+    date, setDate,
+    errors,
+    handleSave,
+  } = useCreateTask({
+    task: defaultTask
+  });
 
-    return (
-      <View style={styles.screen}>
-        <Return></Return>
+  return (
+    <View style={styles.screen}>
+      <Return />
+      <ScrollView
+        style={styles.scroll}
+        contentContainerStyle={{ ...styles.content, paddingBottom: 40 }}
+        showsVerticalScrollIndicator={false}
+      >
+        <HeaderCreateTask />
 
-   
-        <ScrollView
-          style={styles.scroll}
-          contentContainerStyle={{ ...styles.content, paddingBottom: 40 }}
-          showsVerticalScrollIndicator={false}
-          
-        >
-            <HeaderCreateTask />
-            <TaskDescriptionInput />
-            <WhenPicker onSelect={({ type, date }) => {
-                console.log(type, date);
-                }} />
-            <AITimePicker />
+        <TaskNameInput
+          name={name}
+          onChange={setName}
+          error={errors.name} 
+        />
 
-            <SaveButton onPress={() => console.log('Збережено!')} />
-        </ScrollView>
-      </View>
-    );
+        <TaskDescriptionInput
+          description={description}
+          onChange={setDescription}
+          error={errors.description}
+        />
+
+        <PriorityPicker
+          initialValue={priority}
+          onChange={setPriority}
+        />
+
+        <WhenPicker
+          date={date}
+          onSelect={({ date: picked }) => {
+            if (picked) setDate(picked);
+          }}
+        />
+
+        <SaveButton onPress={handleSave} />
+      </ScrollView>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
   screen: {
     marginVertical: 15,
     flex: 1,
-    backgroundColor: "#0d0d0d",
+    backgroundColor: '#0d0d0d',
   },
   scroll: {
     flex: 1,
@@ -58,12 +91,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
     paddingTop: spacing.xl,
     gap: spacing.md,
-  },
-  voiceWrap: {
-    position: 'absolute',
-    bottom: 96,
-    left: 0,
-    right: 0,
-    alignItems: 'center',
   },
 });

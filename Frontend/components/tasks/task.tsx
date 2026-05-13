@@ -1,34 +1,40 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Task } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 import { TaskPriority } from '@shared/types'
 import { useTranslation } from 'react-i18next';
+import { colors } from '../main/design-tokens';
+import { useRouter } from 'expo-router';
+
+import { TaskStatus } from '@shared/types';
+
 
 type TaskCardProps = {
-  priority?: TaskPriority | boolean;
+  id: string;
+  priority: TaskPriority;
   title: string;
   description: string;
   timeLeft?: string;
   scheduledTime?: string;
-  completed?: boolean;
+  status: TaskStatus;
   onDone?: () => void;
 };
 
 export default function TaskCard({
-  priority = false,
+  id,
+  priority,
   title,
   description,
   timeLeft,
   scheduledTime,
-  completed = false,
+  status,
   onDone,
 }: TaskCardProps) {
-  const [isCompleted, setIsCompleted] = useState(completed);
+  const router = useRouter();
   const { t } = useTranslation();
 
-  if (priority && typeof priority !== "boolean") {
-    console.log("Rendering priority card with priority:", priority);
-    const priorityConfig = {
+
+  const priorityConfig = {
       [TaskPriority.High]: {
         color: "#F87171",
         bg: "#450A0A",
@@ -45,6 +51,27 @@ export default function TaskCard({
         label: t("tasks.task.priority.low")
       }
     };
+
+  if (status !== TaskStatus.Done) {
+    if (status === TaskStatus.Expired) {
+      return (
+        <View style={[styles.card, styles.cardLight, { backgroundColor: 'rgba(16, 16, 16, 0.8)' }]}>
+          <View style={styles.scheduledRow}>
+            <View style={[styles.checkBadge, { backgroundColor: 'rgba(81, 0, 0, 1)' }]}>
+              <Text style={[styles.checkIcon, { color: 'rgba(247, 0, 0, 1)' }]}>!</Text>
+            </View>
+          </View>
+          <Text style={[styles.title, { color: '#979797ff', marginVertical: 2 }]}>{title}</Text>
+          <Text style={[styles.description, { color: '#575757ff' }]}>
+            {description}
+          </Text>
+
+          <View style={{ alignItems: 'flex-end' }}>
+            <Text style={styles.timeLeft}>Deadline: {timeLeft}</Text>
+          </View>
+        </View>
+    )}
+
     return (
       <View style={styles.card}>
         <View style={styles.priorityRow}>
@@ -52,6 +79,10 @@ export default function TaskCard({
             <Ionicons name="flash" size={16} color={priorityConfig[priority].color} />
           </View>
           <Text style={[styles.priorityLabel, { color: priorityConfig[priority].color }]}>{priorityConfig[priority].label}</Text>
+          <TouchableOpacity style={{ padding: 3 }} onPress={() => {router.push(`/task/${id}`)}}>
+            <Ionicons name="chevron-forward" size={16} color={priorityConfig[priority].color} />
+          </TouchableOpacity>
+
         </View>
 
         <Text style={styles.title}>{title}</Text>
@@ -62,30 +93,27 @@ export default function TaskCard({
             <Text style={styles.doneButtonText}>{t("tasks.task.done")}</Text>
           </TouchableOpacity>
           {timeLeft && (
-            <Text style={styles.timeLeft}>{t("tasks.task.remaining")}: {timeLeft}</Text>
+            <Text style={styles.timeLeft}>Deadline: {timeLeft}</Text>
           )}
         </View>
       </View>
     );
   }
+  
 
   return (
     <View style={[styles.card, styles.cardLight]}>
       <View style={styles.scheduledRow}>
-        <TouchableOpacity
-          onPress={() => {
-            setIsCompleted(prev => !prev);
-            onDone?.();
-          }}
-          activeOpacity={0.7}
-        >
-          <View style={[styles.checkBadge, isCompleted ? styles.checkBadgeOn : styles.checkBadgeOff]}>
-            {isCompleted && <Text style={styles.checkIcon}>✓</Text>}
-          </View>
-        </TouchableOpacity>
+        <View style={[styles.checkBadge, styles.checkBadgeOn ]}>
+          <Text style={styles.checkIcon}>✓</Text>
+        </View>
+
         {scheduledTime && (
           <Text style={styles.scheduledTime}>{scheduledTime}</Text>
         )}
+          <TouchableOpacity style={{ padding: 3 }} onPress={() => {router.push(`/task/${id}`)}}>
+            <Ionicons name="chevron-forward" size={16} color={priorityConfig[priority].color} />
+          </TouchableOpacity>
       </View>
 
       <Text style={[styles.title]}>{title}</Text>
@@ -126,6 +154,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginRight: 8,
   },
+  chevron: {
+    fontSize: 27,
+    color: colors.outlineVariant,
+    fontWeight: '300',
+  },
   priorityIcon: {
     fontSize: 16,
   },
@@ -154,9 +187,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   actionRow: {
+    marginTop: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 16,
+    justifyContent: 'space-between', 
   },
   doneButton: {
     backgroundColor: '#FFFFFF',
@@ -170,8 +204,9 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   timeLeft: {
-    color: '#8E8E93',
-    fontSize: 14,
+    color: '#6b6b6eff',
+    fontSize: 12,
+    right: 10,
   },
 
   // Scheduled card

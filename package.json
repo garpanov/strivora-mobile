@@ -9,5 +9,8 @@
   "scripts": {
     "dev:backend": "npm run dev --workspace=Backend",
     "dev:frontend": "npm run dev --workspace=Frontend"
+  },
+  "dependencies": {
+    "expo-blur": "~15.0.8"
   }
 }

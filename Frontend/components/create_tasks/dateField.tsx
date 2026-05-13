@@ -12,7 +12,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 const { width } = Dimensions.get('window');
 
-// Фіксований розмір клітинки — щоб круг був ідеальним
 const CAL_PADDING = 20;
 const CELL_SIZE = Math.floor((width - CAL_PADDING * 2) / 7);
 
@@ -26,13 +25,14 @@ type Option = 'today' | 'tomorrow' | 'week' | 'date';
 
 interface WhenPickerProps {
   onSelect?: (value: { type: Option; date?: Date }) => void;
+  date?: Date;
 }
 
-export default function WhenPicker({ onSelect }: WhenPickerProps) {
-  const [selected, setSelected] = useState<Option | null>(null);
+export default function WhenPicker({ onSelect, date }: WhenPickerProps) {
+  const [selected, setSelected] = useState<Option | null>(date ? 'date' : null);
   const [showCalendar, setShowCalendar] = useState(false);
-  const [calendarDate, setCalendarDate] = useState(new Date());
-  const [pickedDate, setPickedDate] = useState<Date | null>(null);
+  const [calendarDate, setCalendarDate] = useState(date ?? new Date());
+  const [pickedDate, setPickedDate] = useState<Date | null>(date ?? null);
 
   const slideAnim = useRef(new Animated.Value(300)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -74,7 +74,13 @@ export default function WhenPicker({ onSelect }: WhenPickerProps) {
       openCalendar();
     } else {
       const date = new Date();
-      if (type === 'tomorrow') date.setDate(date.getDate() + 1);
+      if (type === 'tomorrow') {
+        date.setDate(date.getDate() + 1);
+      } else if (type === 'week') {
+        const day = date.getDay();
+        const daysUntilSunday = day === 0 ? 0 : 7 - day;
+        date.setDate(date.getDate() + daysUntilSunday);
+      }
       onSelect?.({ type, date });
     }
   };
@@ -246,10 +252,11 @@ const styles = StyleSheet.create({
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 10,
+    justifyContent: 'space-between',
   },
   card: {
-    width: (width - 82) / 2,
+    width: '48.5%',
+    marginBottom: 10,
     backgroundColor: '#1e1e1e',
     borderRadius: 10,
     paddingVertical: 22,

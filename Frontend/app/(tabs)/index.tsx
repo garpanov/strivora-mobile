@@ -8,9 +8,10 @@ import ActiveTasksCard from '@/components/main/ActiveTasks';
 import FinanceCard from '@/components/main/FinanceCard';
 import StatsRow from '@/components/main/stats';
 import DigitalStoicismCard from '@/components/main/digitalstoick';
-import { useTasksStore, Task } from '@/store/useTasksStore';
+import { useTasksStore } from '@/store/useTasksStore';
 import { TaskPriority, TaskStatus } from '@shared/types';
 import { getTasksEndingToday } from '@/utils/task.utils';
+
  
 // ─────────────────────────────────────────────────────────────────────────────
  
@@ -19,6 +20,7 @@ export default function HomeScreen({ navigation }: any) {
   const tasks_start = useTasksStore((state) => state.tasks)
 
   const tasks = getTasksEndingToday(tasks_start);
+  const tasks_inprogress = tasks.filter((task) => task.status === TaskStatus.InProgress);
 
   const STATS =
     { time_value: '1г 24х', energy_value: '84%' }
@@ -43,7 +45,7 @@ export default function HomeScreen({ navigation }: any) {
         />
  
         <ActiveTasksCard
-          tasks={tasks}
+          tasks={tasks_inprogress}
           date="24 Жовт"
           onTaskPress={(task) => navigation?.navigate?.('TaskDetail', { taskId: task.id })}
         />

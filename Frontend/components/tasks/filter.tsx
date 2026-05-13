@@ -8,37 +8,32 @@ const FILTERS = [
   { id: 'week', label: 'tasks.filter.week' },
   { id: 'month', label: 'tasks.filter.month' },
   { id: 'year', label: 'tasks.filter.year' },
-  { id: 'other', label: 'tasks.filter.other' }
+  { id: 'all', label: 'tasks.filter.all' }
 ];
 
 type TaskFilterBarProps = {
+  activeFilter: string;
   onFilterChange?: (filter: string) => void;
 };
 
-export default function TaskFilterBar({ onFilterChange }: TaskFilterBarProps) {
-  const [active, setActive] = useState('today');
+export default function TaskFilterBar({ activeFilter, onFilterChange }: TaskFilterBarProps) {
   const { t } = useTranslation();
 
   const handlePress = (id: string) => {
-    setActive(id);
     onFilterChange?.(id);
   };
 
   return (
     <View style={styles.wrapper}>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.container}
-      >
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.container}>
         {FILTERS.map((filter) => (
           <TouchableOpacity
             key={filter.id}
             onPress={() => handlePress(filter.id)}
-            style={[styles.chip, active === filter.id && styles.chipActive]}
+            style={[styles.chip, activeFilter === filter.id && styles.chipActive]} 
             activeOpacity={0.7}
           >
-            <Text style={[styles.label, active === filter.id && styles.labelActive]}>
+            <Text style={[styles.label, activeFilter === filter.id && styles.labelActive]}>
               {t(filter.label)}
             </Text>
           </TouchableOpacity>

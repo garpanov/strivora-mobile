@@ -1,23 +1,13 @@
 import { create } from 'zustand';
-import { TaskPriority, TaskStatus } from '@shared/types';
-
-export type Task = {
-    id: string,
-    name: string,
-    description: string,
-    priority: TaskPriority,
-    status: TaskStatus,
-
-    dateStarted: Date,
-    dateEnd: Date
-}
+import { TaskPriority, TaskStatus, Task } from '@shared/types';
 
 type TasksState = {
     tasks: Task[],
 
     updateTask: (id: string, updateData: Partial<Task>) => void,
-    initTask: () => Promise<void>
-
+    initTask: () => Promise<void>,
+    createTask: (task: Task) => void,
+    deleteTask: (id: string) => void
 }
 
 export const useTasksStore = create<TasksState>((set) => ({
@@ -31,7 +21,6 @@ export const useTasksStore = create<TasksState>((set) => ({
                 }
                 return t;
             });
-
             return { tasks: updatedTasks };
         });
         },
@@ -41,10 +30,10 @@ export const useTasksStore = create<TasksState>((set) => ({
             id: "1",
             name: "Розробка UI",
             description: "Створити інтерфейс для сторінки задач",
-            priority: TaskPriority.High,
+            priority: TaskPriority.Medium,
             status: TaskStatus.InProgress,
             dateStarted: new Date("2026-05-01"),
-            dateEnd: new Date("2026-05-10")
+            dateEnd: new Date("2026-05-11")
           },
           {
             id: "2",
@@ -53,7 +42,7 @@ export const useTasksStore = create<TasksState>((set) => ({
             priority: TaskPriority.Medium,
             status: TaskStatus.Done,
             dateStarted: new Date("2026-04-15"),
-            dateEnd: new Date("2026-05-7")
+            dateEnd: new Date("2026-05-11")
           },
           {
             id: "3",
@@ -62,7 +51,7 @@ export const useTasksStore = create<TasksState>((set) => ({
             priority: TaskPriority.Low,
             status: TaskStatus.Expired,
             dateStarted: new Date("2026-03-10"),
-            dateEnd: new Date("2026-05-7")
+            dateEnd: new Date("2026-05-13")
           },
           {
             id: "4",
@@ -71,10 +60,21 @@ export const useTasksStore = create<TasksState>((set) => ({
             priority: TaskPriority.High,
             status: TaskStatus.InProgress,
             dateStarted: new Date("2026-05-05"),
-            dateEnd: new Date("2026-05-8")
+            dateEnd: new Date("2026-05-13")
           }
         ];
         set({ tasks: tasks_start });
+    },
+
+    createTask: (task) => {
+        set((state) => ({
+            tasks: [...state.tasks, task]
+        }));
+    },
+
+    deleteTask: (id) => {
+        set((state) => ({
+            tasks: state.tasks.filter((task) => task.id !== id)
+        }));
     }
-    
 }));

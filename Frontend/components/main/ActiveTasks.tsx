@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { useRouter } from 'expo-router';
 import { TaskPriority } from '@shared/types';
 
+import ButtonCreate from '../tasks/buttonCreate';
+
 export type Task = {
   id: string;
   name: string;
@@ -72,7 +74,7 @@ export default function ActiveTasksCard({ tasks, date, onTaskPress }: Props) {
             <TouchableOpacity
                 key={task.id}
                 style={styles.taskRow}
-                onPress={() => onTaskPress?.(task)}
+                onPress={() => router.push(`/task/${task.id}`)}
                 activeOpacity={0.7}
             >
                 <View style={styles.iconBox}>
@@ -89,10 +91,7 @@ export default function ActiveTasksCard({ tasks, date, onTaskPress }: Props) {
             )) : <Text style={[styles.taskMeta, { textAlign: 'center' }]}>Немає активних завдань</Text>}
         </View>
 
-        {/* Primary CTA — gradient-style button */}
-        <TouchableOpacity style={styles.addButton} onPress={() => router.push("/create_task")} activeOpacity={0.85}>
-            <Text style={styles.addButtonText}>Додати завдання  +</Text>
-        </TouchableOpacity>
+        <ButtonCreate />
         </View>
     );
 }

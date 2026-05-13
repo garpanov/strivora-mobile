@@ -3,51 +3,30 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-nativ
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 type StartText = {
-  description?: string;
-  onChange?: (description: string) => void;
+  name?: string;
+  onChange?: (name: string) => void;
   error?: boolean;
 }
 
-export default function TaskDescriptionInput({ description, onChange, error }: StartText) {
+export default function TaskNameInput({ name, onChange, error }: StartText) {
   const [isRecording, setIsRecording] = useState(false);
-
-  const handleVoicePress = () => {
-    setIsRecording((prev) => !prev);
-
-  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>ОПИС ЗАВДАННЯ</Text>
+      <Text style={styles.label}>НАЗВА</Text>
         <View style={styles.container_second}>
-
-
         <TextInput
             style={styles.input}
-            placeholder="Про що ви думаєте?"
+            placeholder="Введіть назву завдання"
             placeholderTextColor="#555"
             maxLength={1000}
             multiline
-            value={description}
+            value={name}
             onChangeText={onChange}
         />
-
-        <TouchableOpacity
-            style={[styles.voiceButton, isRecording && styles.voiceButtonActive]}
-            onPress={handleVoicePress}
-            activeOpacity={0.8}
-        >
-            <Ionicons
-            name={isRecording ? 'stop-circle' : 'mic'}
-            size={20}
-            color="#003733"
-            />
-            <Text style={styles.voiceButtonText}>
-            {isRecording ? 'Зупинити' : 'Записати голосом'}
-            </Text>
-        </TouchableOpacity>
         </View>
-        {error && <Text style={styles.errorText}>Опис повинен бути від 10 до 500 символів</Text>}
+        {error && <Text style={styles.errorText}>Назва повинна бути від 3 до 100 символів</Text>}
+
 
     </View>
   );
@@ -55,7 +34,7 @@ export default function TaskDescriptionInput({ description, onChange, error }: S
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
+    marginTop: 40,
   },
   container_second: {
     backgroundColor: '#131313ff',
@@ -72,12 +51,12 @@ const styles = StyleSheet.create({
   },
   input: {
     borderRadius: 10,
-    padding: 14,
+    padding: 6,
     color: '#fff',
     fontSize: 18,
-    minHeight: 90,
+    minHeight: 20,
     textAlignVertical: 'top',
-    marginBottom: 16,
+
   },
   voiceButton: {
     flexDirection: 'row',
