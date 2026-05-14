@@ -30,7 +30,7 @@ export default function FinanceScreen() {
         <TodayExpenses
           total={1420}
           expenses={[
-            { category: ExpenseCategory.Food, amount: 320 },
+            { category: ExpenseCategory.Necessities, amount: 320 },
             { category: ExpenseCategory.Entertainment, amount: 1100 },
           ]}
         />
@@ -38,7 +38,6 @@ export default function FinanceScreen() {
         <MonthlyExpenses items={EXPENSES} />
         <AutomateAccountingCard
           count={1}
-          onScanReceipt={() => console.log('scan')}
           onAttachScreenshot={() => console.log('screenshot')}
         />
         <InsightCard percentage={15} category="каву" />

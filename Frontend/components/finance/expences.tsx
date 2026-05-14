@@ -11,7 +11,7 @@ type CategoryConfig = {
 };
 
 export const CATEGORY_CONFIG: Record<ExpenseCategory, CategoryConfig> = {
-  [ExpenseCategory.Food]: {
+  [ExpenseCategory.Necessities]: {
     icon: 'restaurant-outline',
     color: '#26a69a',
   },
@@ -19,16 +19,21 @@ export const CATEGORY_CONFIG: Record<ExpenseCategory, CategoryConfig> = {
     icon: 'game-controller-outline',
     color: '#ab47bc',
   },
-  [ExpenseCategory.Development]: {
+  [ExpenseCategory.Growth]: {
     icon: 'code-slash-outline',
     color: '#42a5f5',
+  },
+  [ExpenseCategory.Other]: {
+    icon: 'ellipsis-horizontal-outline',
+    color: '#9e9e9e',
   },
 };
 
 export const CATEGORY_LABEL: Record<ExpenseCategory, string> = {
-  [ExpenseCategory.Food]: 'finance_expense_eat',
+  [ExpenseCategory.Necessities]: 'finance_expense_eat',
   [ExpenseCategory.Entertainment]: 'finance_expense_play',
-  [ExpenseCategory.Development]: 'finance_expense_development',
+  [ExpenseCategory.Growth]: 'finance_expense_growth',
+  [ExpenseCategory.Other]: 'finance_expense_other',
 };
 
 type ExpenseItem = {

@@ -1,5 +1,14 @@
 export enum ExpenseCategory {
-  Food = "Food",
+  Necessities = "Necessities",
   Entertainment = "Entertainment",
-  Development = "Development"
+  Growth = "Growth",
+  Other = "Other"
+}
+
+export type Expense = {
+    id: string;
+    name: string;
+    amount: string;
+    category: ExpenseCategory;
+    date: Date;
 }

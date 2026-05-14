@@ -6,25 +6,25 @@ import {
   StyleSheet,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 interface AutomateAccountingCardProps {
-  /** Количество связанных источников. Если 0 — показывается заглушка вместо кнопок */
   count?: number;
-  onScanReceipt?: () => void;
   onAttachScreenshot?: () => void;
 }
 
 export default function AutomateAccountingCard({
   count = 1,
-  onScanReceipt,
   onAttachScreenshot,
 }: AutomateAccountingCardProps) {
+  const router = useRouter();
+
   return (
     <View style={styles.card}>
       <Text style={styles.title}>Автоматизуйте свій облік</Text>
 
       <Text style={styles.description}>
-        Підключіть свій банк або просто сфотографуйте чек. Наш ШІ розпізнає
+        Введіть вручну ваші витрати або просто надішліть фото. Наш ШІ розпізнає
         категорію та додасть витрату миттєво.
       </Text>
 
@@ -38,11 +38,11 @@ export default function AutomateAccountingCard({
         <View style={styles.actions}>
           <TouchableOpacity
             style={styles.primaryButton}
-            onPress={onScanReceipt}
+            onPress={() => router.push('/createCheck')}
             activeOpacity={0.85}
           >
-            <Ionicons name="qr-code-outline" size={22} color="#FFFFFF" />
-            <Text style={styles.primaryButtonText}>Сканувати чек</Text>
+            <Ionicons name="create-outline" size={22} color="#FFFFFF" />
+            <Text style={styles.primaryButtonText}>Створити вручну</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
