@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
 import { ExpenseCategory } from '@shared/types';
 import { useTranslation } from 'react-i18next';
+
+import { useRouter } from 'expo-router';
 
 type CategoryConfig = {
   icon: keyof typeof Ionicons.glyphMap;
@@ -11,27 +12,15 @@ type CategoryConfig = {
 };
 
 export const CATEGORY_CONFIG: Record<ExpenseCategory, CategoryConfig> = {
-  [ExpenseCategory.Necessities]: {
-    icon: 'restaurant-outline',
-    color: '#26a69a',
-  },
-  [ExpenseCategory.Entertainment]: {
-    icon: 'game-controller-outline',
-    color: '#ab47bc',
-  },
-  [ExpenseCategory.Growth]: {
-    icon: 'code-slash-outline',
-    color: '#42a5f5',
-  },
-  [ExpenseCategory.Other]: {
-    icon: 'ellipsis-horizontal-outline',
-    color: '#9e9e9e',
-  },
+  [ExpenseCategory.Necessities]: { icon: 'home-outline', color: '#26a69a' },
+  [ExpenseCategory.Entertainment]: { icon: 'cart-outline', color: '#ab47bc' },
+  [ExpenseCategory.Growth]: { icon: 'game-controller-outline', color: '#42a5f5' },
+  [ExpenseCategory.Other]: { icon: 'ellipsis-horizontal-outline', color: '#9e9e9e' },
 };
 
 export const CATEGORY_LABEL: Record<ExpenseCategory, string> = {
-  [ExpenseCategory.Necessities]: 'finance_expense_eat',
-  [ExpenseCategory.Entertainment]: 'finance_expense_play',
+  [ExpenseCategory.Necessities]: 'finance_expense_necessities',
+  [ExpenseCategory.Entertainment]: 'finance_expense_entertainment',
   [ExpenseCategory.Growth]: 'finance_expense_growth',
   [ExpenseCategory.Other]: 'finance_expense_other',
 };
@@ -46,13 +35,11 @@ type Props = {
   expenses: ExpenseItem[];
 };
 
-const formatAmount = (amount: number) =>
-  `₴${amount.toLocaleString('uk-UA')}`;
+const formatAmount = (amount: number) => `₴${amount.toLocaleString('uk-UA')}`;
 
-const CategoryRow = ({ category, amount}: ExpenseItem) => {
+const CategoryRow = ({ category, amount }: ExpenseItem) => {
   const config = CATEGORY_CONFIG[category];
   const { t } = useTranslation();
-
   return (
     <View style={styles.row}>
       <View style={[styles.iconWrap, { backgroundColor: config.color + '22' }]}>
@@ -66,27 +53,35 @@ const CategoryRow = ({ category, amount}: ExpenseItem) => {
 
 const TodayExpenses = ({ total, expenses }: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <View style={styles.card}>
       <View style={styles.header}>
         <Ionicons name="trending-down-outline" size={18} color="#e53935" />
-        <Text style={styles.headerText}>{t("finance_daily_expenses_label")}</Text>
+        <Text style={styles.headerText}>{t('finance_daily_expenses_label')}</Text>
       </View>
 
       <Text style={styles.total}>{formatAmount(total)}</Text>
 
-      <View style={styles.divider} />
-
       {total === 0 || expenses.length === 0 ? (
-        <Text style={styles.empty}>{t("finance_expense_empty")}</Text>
+        <Text style={styles.empty}>{t('finance_expense_empty')}</Text>
       ) : (
-        expenses.map((item, index) => (
+        expenses.map((item) => (
           <React.Fragment key={item.category}>
-            <CategoryRow {...item} />
+            {item.amount > 0 && <CategoryRow {...item} />}
           </React.Fragment>
         ))
       )}
+
+      <TouchableOpacity
+        style={styles.showAllButton}
+        onPress={() => router.push('/finance_all_check')}
+        activeOpacity={0.7}
+      >
+        <Text style={styles.showAllText}>Показати всі</Text>
+        <Ionicons name="arrow-forward" size={16} color="#A1A1AA" />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -95,10 +90,10 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#0F0F0F',
     borderRadius: 20,
-    padding: 20,
+    padding: 30,
     marginVertical: 12,
-    borderColor: "rgba(255, 255, 255, 0.05)",
-    borderWidth: 1
+    borderColor: 'rgba(255, 255, 255, 0.05)',
+    borderWidth: 1,
   },
   header: {
     flexDirection: 'row',
@@ -150,6 +145,24 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: 'center',
     paddingVertical: 16,
+  },
+
+  showAllButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#rgba(255, 255, 255, 0.05)',
+    borderRadius: 14,
+    paddingVertical: 14,
+    marginTop: 16,
+    gap: 6,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.1)',
+  },
+  showAllText: {
+    color: '#A1A1AA',
+    fontSize: 15,
+    fontWeight: '500',
   },
 });
 

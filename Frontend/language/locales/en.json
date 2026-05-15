@@ -48,8 +48,10 @@
     
     "finance_daily_expenses_label": "Expenses for today",
 
-    "finance_expense_eat": "Eating",
-    "finance_expense_play": "Entertainment",
+    "finance_expense_necessities": "Necessities",
+    "finance_expense_entertainment": "Entertainment",
+    "finance_expense_growth": "Growth",
+    "finance_expense_other": "Other",
     "finance_expense_empty": "There are two options here, either you haven't spent any money yet, \nor you are hiding something from us.",
 
     "finance_monthly_income_label": "Monthly income",

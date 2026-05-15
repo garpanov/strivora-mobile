@@ -19,7 +19,7 @@ export function useCreateExpense({ expense }: Props) {
 
   const errors = {
     name: name.trim().length === 0 || name.trim().length < 3 || name.trim().length > 100,
-    amount: Number(amount) <= 1,
+    amount: Number(amount) < 1,
     category: !category,
     date: !date,
   };

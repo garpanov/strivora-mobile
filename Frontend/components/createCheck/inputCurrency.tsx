@@ -9,9 +9,10 @@ import {
 
 interface TransactionInputProps {
   onChange?: (value: string) => void;
+  error: boolean;
 }
 
-export const TransactionInput: React.FC<TransactionInputProps> = ({ onChange }) => {
+export const TransactionInput: React.FC<TransactionInputProps> = ({ onChange, error }) => {
   const inputRef = useRef<TextInput>(null);
   const [value, setValue] = useState('');
 
@@ -45,6 +46,8 @@ export const TransactionInput: React.FC<TransactionInputProps> = ({ onChange }) 
             <Text style={styles.currency}>₴</Text>
         </View>
         </View>
+        {error && <Text style={styles.errorText}>Це поле є обов'язковим</Text>}
+
     </View>
   );
 };
@@ -96,6 +99,7 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     fontSize: 52,
     letterSpacing: -3.6,
+    textAlign: 'left',
     color: '#8BF1E6',
     padding: 0,
     margin: 0,
@@ -110,5 +114,13 @@ const styles = StyleSheet.create({
     color: 'rgba(189, 201, 198, 0.4)',
     marginBottom: 6,
     marginLeft: 8,
+  },
+
+  errorText: {
+    color: '#ff6b6b',
+    fontSize: 12,
+    marginTop: 4,
+    marginLeft: 10,
+    fontWeight: '500',
   },
 });

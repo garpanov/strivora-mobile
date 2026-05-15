@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
+
 import { colors, spacing } from '@/components/main/design-tokens';
 import Header from '@/components/header';
 import HeaderFinance from '@/components/finance/financeHeader';
@@ -10,14 +11,31 @@ import MonthlyExpenses, { ExpenseItem } from '@/components/finance/monthlyExpenc
 import AutomateAccountingCard from '@/components/finance/CreateCheck';
 import InsightCard from '@/components/finance/insightCard';
 import FinancialHero from '@/components/finance/financialHero';
+import { useExpensesStore } from '@/store/useExpenses';
+import { costExpensesForToday, CalculateCostCategoryToday, costExpensesForMonth, CalculateCostCategoryMonth } from '@/utils/finance.utils';
 
 const EXPENSES: ExpenseItem[] = [
-  { id: '1', label: 'Житло',    icon: '🏠', percent: 32, amount: 22400 },
-  { id: '2', label: 'Продукти', icon: '🛒', percent: 18, amount: 12600 },
-  { id: '3', label: 'Розваги',  icon: '🎬', percent: 10, amount: 7000  },
+  { id: '1', label: 'Необхідне',    icon: '📌', percent: 32, amount: 22400 },
+  { id: '2', label: 'Розваги', icon: '🎬', percent: 18, amount: 12600 },
+  { id: '3', label: 'Розвиток',  icon: '🎯', percent: 10, amount: 7000  },
+  { id: '4', label: 'Інше',  icon: '📦', percent: 10, amount: 7000  },
 ];
 
 export default function FinanceScreen() {
+  const expenses = useExpensesStore((state) => state.expenses);
+
+  const totalExpensesToday = costExpensesForToday(expenses);
+  const totalExpensesByCategory = CalculateCostCategoryToday(expenses);
+  const totalExpensesThisMonth = costExpensesForMonth(expenses);
+  const totalExpensesByCategoryMonth = CalculateCostCategoryMonth(expenses);
+
+  const EXPENSES: ExpenseItem[] = [
+  { id: '1', label: 'Необхідне',    icon: '📌', percent: totalExpensesByCategoryMonth.percentages[ExpenseCategory.Necessities], amount: totalExpensesByCategoryMonth.amounts[ExpenseCategory.Necessities] },
+  { id: '2', label: 'Розваги', icon: '🎬', percent: totalExpensesByCategoryMonth.percentages[ExpenseCategory.Entertainment], amount: totalExpensesByCategoryMonth.amounts[ExpenseCategory.Entertainment] },
+  { id: '3', label: 'Розвиток',  icon: '🎯', percent: totalExpensesByCategoryMonth.percentages[ExpenseCategory.Growth], amount: totalExpensesByCategoryMonth.amounts[ExpenseCategory.Growth] },
+  { id: '4', label: 'Інше',  icon: '📦', percent: totalExpensesByCategoryMonth.percentages[ExpenseCategory.Other], amount: totalExpensesByCategoryMonth.amounts[ExpenseCategory.Other] },
+];
+
   return (
     <View style={styles.screen}>
       <Header />
@@ -28,13 +46,15 @@ export default function FinanceScreen() {
       >
         <HeaderFinance />
         <TodayExpenses
-          total={1420}
+          total={totalExpensesToday}
           expenses={[
-            { category: ExpenseCategory.Necessities, amount: 320 },
-            { category: ExpenseCategory.Entertainment, amount: 1100 },
+            { category: ExpenseCategory.Necessities, amount: totalExpensesByCategory[ExpenseCategory.Necessities] },
+            { category: ExpenseCategory.Entertainment, amount: totalExpensesByCategory[ExpenseCategory.Entertainment] },
+            { category: ExpenseCategory.Growth, amount: totalExpensesByCategory[ExpenseCategory.Growth] },
+            { category: ExpenseCategory.Other, amount: totalExpensesByCategory[ExpenseCategory.Other] },
           ]}
         />
-        <MonthlyIncomeCard amount={84000} bars={[30, 60, 45, 80, 95, 55]} />
+        <MonthlyIncomeCard amount={totalExpensesThisMonth} bars={[30, 60, 45, 80, 95, 55]} />
         <MonthlyExpenses items={EXPENSES} />
         <AutomateAccountingCard
           count={1}

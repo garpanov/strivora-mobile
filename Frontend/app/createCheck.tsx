@@ -48,10 +48,10 @@ export default function CreateCheckScreen() {
       >
         <HeaderCreateCheck />
 
-        <TransactionInput onChange={(value) => console.log(value)} />
+        <TransactionInput error={errors.amount} onChange={(value) => setAmount(value)} />
         <CategorySelector selected={category} onSelect={setCategory} />
 
-        <DescriptionSection />
+        <DescriptionSection error={errors.name} onChange={setName} />
 
         <WhenPicker
           date={date}

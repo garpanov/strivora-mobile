@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 
-export default function DescriptionSection() {
-  const [note, setNote] = useState('');
+type Props = {
+  onChange: (text: string) => void;
+  error: boolean;
+}
+
+export default function DescriptionSection({ onChange, error }: Props) {
 
   return (
     <View style={styles.section}>
@@ -16,12 +20,12 @@ export default function DescriptionSection() {
           placeholder="Додати примітку..."
           placeholderTextColor="rgba(189, 201, 198, 0.3)"
           maxLength={100}
-          value={note}
-          onChangeText={setNote}
+          onChangeText={onChange}
           multiline
           textAlignVertical="top"
         />
       </View>
+      {error && <Text style={styles.errorText}>Це поле є обов'язковим</Text>}
     </View>
   );
 }
@@ -29,8 +33,7 @@ export default function DescriptionSection() {
 const styles = StyleSheet.create({
   section: {
     flexDirection: 'column',
-    alignItems: 'center',
-    gap: 12,
+    gap: 2,
     width: "100%",
     paddingHorizontal: 20,
   },
@@ -68,5 +71,13 @@ const styles = StyleSheet.create({
     color: 'rgba(189, 201, 198, 1)',
     minHeight: 80,
     width: '100%',
+  },
+
+  errorText: {
+    color: '#ff6b6b',
+    fontSize: 12,
+    marginTop: 4,
+    marginLeft: 10,
+    fontWeight: '500',
   },
 });

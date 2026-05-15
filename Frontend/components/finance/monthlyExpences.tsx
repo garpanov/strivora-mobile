@@ -4,7 +4,10 @@ import {
   Text,
   StyleSheet,
   FlatList,
+  TouchableOpacity,
 } from 'react-native';
+import Svg, { Path, Polyline } from 'react-native-svg';
+import { useRouter } from 'expo-router';
 
 // ---------- types ----------
 export type ExpenseItem = {
@@ -61,9 +64,41 @@ const MonthlyExpenses: React.FC<Props> = ({
   currencySymbol = '₴',
   emptyText = 'Витрат за цей місяць ще немає',
 }) => {
+  const router = useRouter();
+
   return (
     <>
         <Text style={styles.title}>{title}</Text>
+        <TouchableOpacity
+          style={styles.showAllButton}
+          activeOpacity={0.6}
+          onPress={() => router.push('/finance_all_check')}
+        >
+          <Text style={styles.showAllText}>Показати всі</Text>
+          <Svg width={13} height={13} viewBox="0 0 24 24" fill="none">
+            <Path
+              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              stroke="#006A63"
+              strokeWidth={2.2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <Polyline
+              points="15 3 21 3 21 9"
+              stroke="#006A63"
+              strokeWidth={2.2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <Path
+              d="M10 14 21 3"
+              stroke="#006A63"
+              strokeWidth={2.2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </Svg>
+        </TouchableOpacity>
         <View style={styles.card}>
 
         {items.length === 0 ? (
@@ -95,7 +130,7 @@ const CARD = '#0F0F0F';
 const styles = StyleSheet.create({
   card: {
     backgroundColor: CARD,
-    borderRadius: 16,
+    borderRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderColor: "rgba(255, 255, 255, 0.05)",
@@ -164,4 +199,18 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: 'center',
   },
+
+  showAllButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start', 
+    marginBottom: 6,
+    marginLeft: 6,
+    gap: 4,
+  },
+  showAllText: {
+    color: '#006A63',          
+    fontSize: 14,
+    fontWeight: '500',
+  }
 });
